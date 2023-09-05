@@ -15,3 +15,4 @@ plt.xlabel('Data')
 plt.ylabel('Preço de Fechamento')
 plt.grid(True)
 plt.show()
+
