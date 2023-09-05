@@ -9,22 +9,20 @@ if not mt5.initialize():
 print(mt5.terminal_info())
 print(mt5.version())
 
-symbol="RADL3"
+symbol="VALE3"
 mt5.symbol_select(symbol,True)
-lot = 300
+lot = 100
 price = mt5.symbol_info_tick(symbol).ask
 deviation = 2
 request = {
     "action": mt5.TRADE_ACTION_DEAL,
     "symbol": symbol,
     "volume": float(lot),
-    "type": mt5.ORDER_TYPE_BUY,
+    "type": mt5.ORDER_TYPE_SELL,
     "price": price,
-    "sl": price - 0.20,
-    "tp": price + 0.50,
     "deviation": deviation,
     "magic": 123,
-    "comment": "compra",
+    "comment": "venda",
     "type_time": mt5.ORDER_TIME_GTC,
     "type_filling": mt5.ORDER_FILLING_RETURN
 }
