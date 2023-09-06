@@ -9,9 +9,13 @@ if not mt5.initialize():
 print(mt5.terminal_info())
 print(mt5.version())
 
-symbol="RADL3"
-mt5.symbol_select(symbol,True)
-lot = 300
+symbol="MRFG3"
+if not mt5.symbol_select(symbol,True):
+    print(f"Failed to select symbol: {symbol}")
+    mt5.shutdown()
+    quit()
+
+lot = 100
 price = mt5.symbol_info_tick(symbol).ask
 deviation = 2
 request = {
@@ -21,7 +25,7 @@ request = {
     "type": mt5.ORDER_TYPE_BUY,
     "price": price,
     "sl": price - 0.20,
-    "tp": price + 0.50,
+    "tp": price + 0.20,
     "deviation": deviation,
     "magic": 123,
     "comment": "compra",
