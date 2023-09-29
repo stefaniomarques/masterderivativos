@@ -6,10 +6,9 @@ import statsmodels.api as sm
 import yfinance as yf
 from math import factorial
 from statsmodels.tsa.stattools import adfuller
-from writexl import write_xlsx
 
 # Símbolos das ações desejadas
-acoes = ["BBAS", "BBDC"]  # Substitua pelos símbolos das ações que deseja analisar
+acoes = ["BBAS3.SA", "BBDC4.SA"]  # Substitua pelos símbolos das ações que deseja analisar
 
 # Obtém os dados das ações do Yahoo Finance
 dados_acoes = yf.download(acoes, start="2022-01-01", end="2022-12-31")
@@ -45,8 +44,8 @@ for i, j in itertools.combinations(dados_acoes.columns[:-1], 2):
                     dados_acoes.iloc[-1][i], dados_acoes.iloc[-1][j], model.resid.max(), model.resid.min(),
                     model.resid.std(), dados_acoes.iloc[-1][i] - model.params[0] - model.params[1] * dados_acoes.iloc[-1][j]]
 
-# Salva os resultados em um arquivo Excel
-write_xlsx(pares, "resultados.xlsx")
+# Salva os resultados em um arquivo Excel usando pandas
+pares.to_excel("resultados.xlsx", index=False)
 
 # Salva os resultados em um arquivo CSV
 pares.to_csv("resultados.csv", sep=";", decimal=".", index=False)
