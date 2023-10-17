@@ -2,6 +2,30 @@ import numpy as np
 from scipy.stats import norm
 
 def black_scholes(option_type, S, K, T, r, sigma):
+    d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
+
+    if option_type == 'call':
+        option_price = S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
+    elif option_type == 'put':
+        option_price = K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
+    else:
+        raise ValueError("option_type deve ser 'call' ou 'put'.")
+
+    return option_price
+
+# Exemplo de uso
+S = 49.54  # Preço da ação
+K = 50.0   # Preço de exercício
+T = 0.03   # Tempo até a expiração (em anos)
+r = 0.1275 # Taxa de juros livre de risco
+sigma = 0.2  # Volatilidade
+
+option_type = 'call'  # 'call' para opção de compra ou 'put' para opção de venda
+option_price = black_scholes(option_type, S, K, T, r, sigma)
+print(f'O preço da opção {option_type} é: {option_price:.2f}')
+
+
     """
     Calcula o preço de uma opção usando o modelo Black-Scholes.
 
