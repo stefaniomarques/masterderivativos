@@ -7,7 +7,7 @@ from arch.unitroot import PhillipsPerron
 from statsmodels.regression.linear_model import OLS
 import statsmodels.api as sm
 
-acoes = ["PETR3.SA", "PETR4.SA"]
+acoes = ["PETR4.SA", "TIMS3.SA"]
 
 start = "2022-01-01"
 end = "2023-08-31"
