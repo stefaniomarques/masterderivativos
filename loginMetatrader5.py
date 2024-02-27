@@ -7,9 +7,9 @@ if not mt5.initialize():
     print("initialize() failed, error code =", mt5.last_error())
     quit()
 
-account = 512185495
+account = 559098945
 server = "XPMT5-DEMO"
-authorized = mt5.login(account, password="9SwAfLSD", server=server)
+authorized = mt5.login(account, password="XsoT0dZW", server=server)
 
 if authorized:
     print("Connected to account #{}".format(account))
